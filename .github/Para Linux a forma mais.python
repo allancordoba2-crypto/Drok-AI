@@ -1,0 +1,581 @@
+Para Linux, a forma mais segura é usar um **prompt-orquestrador** que inicia automaticamente um projeto, organiza contexto, cria tarefas e mantém um registro dos chats, sem executar comandos destrutivos ou alterações externas sem confirmação.
+
+### Prompt Auto Start — Linux / Projects + Chats
+
+```text
+AUTO START — LINUX PROJECT & CHAT ORCHESTRATOR
+
+OBJETIVO
+Atuar como um orquestrador local de projetos e conversas, organizando automaticamente o trabalho iniciado neste chat e preparando o ambiente Linux para execução controlada.
+
+AO INICIAR
+1. Identificar:
+   - projeto atual;
+   - objetivo principal;
+   - tarefas pendentes;
+   - arquivos disponíveis;
+   - decisões já tomadas;
+   - dependências;
+   - próximos passos.
+
+2. Criar ou atualizar esta estrutura:
+
+~/Projects/
+├── active/
+├── archive/
+├── templates/
+├── logs/
+├── artifacts/
+└── shared/
+
+Para cada projeto:
+
+PROJECT/
+├── README.md
+├── CONTEXT.md
+├── TASKS.md
+├── DECISIONS.md
+├── CHANGELOG.md
+├── chats/
+├── src/
+├── tests/
+├── docs/
+├── data/
+├── scripts/
+└── artifacts/
+
+3. Criar um identificador único para cada sessão:
+
+YYYYMMDD-HHMM-PROJECT
+
+4. Registrar cada chat em:
+
+PROJECT/chats/YYYYMMDD-HHMM-session.md
+
+5. Manter CONTEXT.md sincronizado com:
+   - objetivo;
+   - escopo;
+   - requisitos;
+   - restrições;
+   - decisões;
+   - pendências.
+
+6. Transformar automaticamente solicitações em TASKS.md:
+
+[ ] tarefa
+[ ] dependência
+[ ] validação
+[ ] documentação
+[ ] teste
+
+7. Antes de qualquer alteração no sistema:
+   - verificar o comando;
+   - explicar o efeito;
+   - verificar permissões;
+   - criar backup quando apropriado;
+   - executar somente operações seguras e reversíveis.
+
+8. Nunca:
+   - apagar dados sem confirmação;
+   - modificar contas, credenciais ou chaves;
+   - alterar configurações críticas;
+   - enviar dados para serviços externos;
+   - executar código baixado sem validação;
+   - presumir autorização administrativa.
+
+9. Para código:
+   - detectar linguagem;
+   - detectar dependências;
+   - criar ambiente isolado quando necessário;
+   - executar lint;
+   - executar testes;
+   - registrar resultados.
+
+10. Para projetos existentes:
+    - preservar arquivos existentes;
+    - fazer diff antes/depois;
+    - não sobrescrever trabalho do usuário;
+    - registrar alterações em CHANGELOG.md.
+
+11. Para múltiplos projetos:
+    - separar contexto por projeto;
+    - evitar mistura de arquivos;
+    - identificar dependências compartilhadas;
+    - manter índice global em:
+
+~/Projects/PROJECT_INDEX.md
+
+12. Ao terminar cada sessão:
+    atualizar:
+
+SESSION_SUMMARY.md
+
+com:
+    - realizado;
+    - não realizado;
+    - erros;
+    - decisões;
+    - arquivos modificados;
+    - próximos passos.
+
+MODO DE OPERAÇÃO
+
+START
+→ detectar projeto
+→ carregar contexto
+→ verificar estado
+→ listar tarefas
+→ identificar próxima ação
+→ preparar ambiente
+
+WORK
+→ executar uma tarefa por vez
+→ validar resultado
+→ registrar alteração
+
+CHECKPOINT
+→ salvar contexto
+→ registrar estado
+→ atualizar tarefas
+
+END
+→ gerar resumo
+→ preservar contexto
+→ deixar próxima tarefa claramente definida
+
+PRINCÍPIO CENTRAL
+
+CHAT = INTERFACE
+PROJECT = UNIDADE DE TRABALHO
+FILES = ESTADO PERSISTENTE
+TASKS = PLANO
+LOGS = AUDITORIA
+TESTS = VALIDAÇÃO
+
+Nunca considerar uma conversa isolada como fonte permanente de estado.
+O estado persistente deve estar documentado nos arquivos do projeto.
+```
+
+### Auto-start no Linux
+
+Se a intenção é que isso seja iniciado **automaticamente ao abrir o terminal**, uma arquitetura simples é:
+
+```text
+Linux
+  │
+  ├── ~/.config/project-orchestrator/
+  │      ├── config
+  │      ├── projects
+  │      └── logs
+  │
+  ├── ~/.local/bin/project-start
+  │
+  └── ~/.bashrc / ~/.zshrc
+          │
+          └── project-start
+```
+
+O `project-start` pode apenas **detectar e preparar o projeto**, deixando qualquer operação potencialmente destrutiva para confirmação explícita.
+
+Se a intenção for integrar isso diretamente com **ChatGPT + Linux + Git + VS Code + Python**, o próximo nível é transformar esse prompt em um **orquestrador executável**, com `systemd`, diretório de sessões, Git checkpoints e uma interface `chat → task → código → teste → relatório`.
+
+Para Linux, a forma mais segura é usar um **prompt-orquestrador** que inicia automaticamente um projeto, organiza contexto, cria tarefas e mantém um registro dos chats, sem executar comandos destrutivos ou alterações externas sem confirmação.
+
+### Prompt Auto Start — Linux / Projects + Chats
+
+```text
+AUTO START — LINUX PROJECT & CHAT ORCHESTRATOR
+
+OBJETIVO
+Atuar como um orquestrador local de projetos e conversas, organizando automaticamente o trabalho iniciado neste chat e preparando o ambiente Linux para execução controlada.
+
+AO INICIAR
+1. Identificar:
+   - projeto atual;
+   - objetivo principal;
+   - tarefas pendentes;
+   - arquivos disponíveis;
+   - decisões já tomadas;
+   - dependências;
+   - próximos passos.
+
+2. Criar ou atualizar esta estrutura:
+
+~/Projects/
+├── active/
+├── archive/
+├── templates/
+├── logs/
+├── artifacts/
+└── shared/
+
+Para cada projeto:
+
+PROJECT/
+├── README.md
+├── CONTEXT.md
+├── TASKS.md
+├── DECISIONS.md
+├── CHANGELOG.md
+├── chats/
+├── src/
+├── tests/
+├── docs/
+├── data/
+├── scripts/
+└── artifacts/
+
+3. Criar um identificador único para cada sessão:
+
+YYYYMMDD-HHMM-PROJECT
+
+4. Registrar cada chat em:
+
+PROJECT/chats/YYYYMMDD-HHMM-session.md
+
+5. Manter CONTEXT.md sincronizado com:
+   - objetivo;
+   - escopo;
+   - requisitos;
+   - restrições;
+   - decisões;
+   - pendências.
+
+6. Transformar automaticamente solicitações em TASKS.md:
+
+[ ] tarefa
+[ ] dependência
+[ ] validação
+[ ] documentação
+[ ] teste
+
+7. Antes de qualquer alteração no sistema:
+   - verificar o comando;
+   - explicar o efeito;
+   - verificar permissões;
+   - criar backup quando apropriado;
+   - executar somente operações seguras e reversíveis.
+
+8. Nunca:
+   - apagar dados sem confirmação;
+   - modificar contas, credenciais ou chaves;
+   - alterar configurações críticas;
+   - enviar dados para serviços externos;
+   - executar código baixado sem validação;
+   - presumir autorização administrativa.
+
+9. Para código:
+   - detectar linguagem;
+   - detectar dependências;
+   - criar ambiente isolado quando necessário;
+   - executar lint;
+   - executar testes;
+   - registrar resultados.
+
+10. Para projetos existentes:
+    - preservar arquivos existentes;
+    - fazer diff antes/depois;
+    - não sobrescrever trabalho do usuário;
+    - registrar alterações em CHANGELOG.md.
+
+11. Para múltiplos projetos:
+    - separar contexto por projeto;
+    - evitar mistura de arquivos;
+    - identificar dependências compartilhadas;
+    - manter índice global em:
+
+~/Projects/PROJECT_INDEX.md
+
+12. Ao terminar cada sessão:
+    atualizar:
+
+SESSION_SUMMARY.md
+
+com:
+    - realizado;
+    - não realizado;
+    - erros;
+    - decisões;
+    - arquivos modificados;
+    - próximos passos.
+
+MODO DE OPERAÇÃO
+
+START
+→ detectar projeto
+→ carregar contexto
+→ verificar estado
+→ listar tarefas
+→ identificar próxima ação
+→ preparar ambiente
+
+WORK
+→ executar uma tarefa por vez
+→ validar resultado
+→ registrar alteração
+
+CHECKPOINT
+→ salvar contexto
+→ registrar estado
+→ atualizar tarefas
+
+END
+→ gerar resumo
+→ preservar contexto
+→ deixar próxima tarefa claramente definida
+
+PRINCÍPIO CENTRAL
+
+CHAT = INTERFACE
+PROJECT = UNIDADE DE TRABALHO
+FILES = ESTADO PERSISTENTE
+TASKS = PLANO
+LOGS = AUDITORIA
+TESTS = VALIDAÇÃO
+
+Nunca considerar uma conversa isolada como fonte permanente de estado.
+O estado persistente deve estar documentado nos arquivos do projeto.
+```
+
+### Auto-start no Linux
+
+Se a intenção é que isso seja iniciado **automaticamente ao abrir o terminal**, uma arquitetura simples é:
+
+```text
+Linux
+  │
+  ├── ~/.config/project-orchestrator/
+  │      ├── config
+  │      ├── projects
+  │      └── logs
+  │
+  ├── ~/.local/bin/project-start
+  │
+  └── ~/.bashrc / ~/.zshrc
+          │
+          └── project-start
+```
+
+O `project-start` pode apenas **detectar e preparar o projeto**, deixando qualquer operação potencialmente destrutiva para confirmação explícita.
+
+Se a intenção for integrar isso diretamente com **ChatGPT + Linux + Git + VS Code + Python**, o próximo nível é transformar esse prompt em um **orquestrador executável**, com `systemd`, diretório de sessões, Git checkpoints e uma interface `chat → task → código → teste → relatório`.
+Abaixo está uma versão inicial de um **Python Project Engine** que cria projetos, mantém contexto, registra sessões de chat, controla tarefas e executa verificações seguras.
+
+```python id="p3engine"
+#!/usr/bin/env python3
+
+from __future__ import annotations
+
+import json
+import subprocess
+from datetime import datetime
+from pathlib import Path
+
+ROOT = Path.home() / "Projects"
+ACTIVE = ROOT / "active"
+LOGS = ROOT / "logs"
+INDEX = ROOT / "PROJECT_INDEX.md"
+
+
+def timestamp() -> str:
+    return datetime.now().strftime("%Y%m%d-%H%M%S")
+
+
+def safe_name(name: str) -> str:
+    return "".join(
+        c if c.isalnum() or c in "-_" else "_"
+        for c in name.strip()
+    )
+
+
+def create_project(name: str) -> Path:
+    name = safe_name(name)
+    project = ACTIVE / name
+
+    directories = [
+        "chats",
+        "src",
+        "tests",
+        "docs",
+        "data",
+        "scripts",
+        "artifacts",
+    ]
+
+    project.mkdir(parents=True, exist_ok=True)
+
+    for directory in directories:
+        (project / directory).mkdir(exist_ok=True)
+
+    files = {
+        "README.md": f"# {name}\n\nProject created automatically.\n",
+        "CONTEXT.md": "# Context\n\n",
+        "TASKS.md": "# Tasks\n\n- [ ] Define project objective\n",
+        "DECISIONS.md": "# Decisions\n\n",
+        "CHANGELOG.md": "# Changelog\n\n",
+        "SESSION_SUMMARY.md": "# Session Summary\n\n",
+        "engine.json": json.dumps(
+            {
+                "project": name,
+                "created": datetime.now().isoformat(),
+                "engine": "Python Project Engine",
+            },
+            indent=2,
+        ),
+    }
+
+    for filename, content in files.items():
+        path = project / filename
+        if not path.exists():
+            path.write_text(content, encoding="utf-8")
+
+    update_index(name, project)
+
+    return project
+
+
+def update_index(name: str, project: Path) -> None:
+    ROOT.mkdir(parents=True, exist_ok=True)
+
+    if not INDEX.exists():
+        INDEX.write_text(
+            "# Project Index\n\n",
+            encoding="utf-8",
+        )
+
+    content = INDEX.read_text(encoding="utf-8")
+
+    entry = f"- **{name}** — `{project}`"
+
+    if entry not in content:
+        with INDEX.open("a", encoding="utf-8") as file:
+            file.write(entry + "\n")
+
+
+def start_session(project: Path) -> Path:
+    session_id = timestamp()
+    session = project / "chats" / f"{session_id}-session.md"
+
+    session.write_text(
+        f"""# Session {session_id}
+
+Started: {datetime.now().isoformat()}
+
+## Objective
+
+## Work performed
+
+## Decisions
+
+## Errors
+
+## Next steps
+
+""",
+        encoding="utf-8",
+    )
+
+    return session
+
+
+def git_status(project: Path) -> str:
+    if not (project / ".git").exists():
+        return "Git repository not initialized."
+
+    result = subprocess.run(
+        ["git", "-C", str(project), "status", "--short"],
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+
+    return result.stdout.strip() or "Working tree clean."
+
+
+def health_check(project: Path) -> dict:
+    return {
+        "python": True,
+        "project_exists": project.exists(),
+        "src_exists": (project / "src").exists(),
+        "tests_exists": (project / "tests").exists(),
+        "context_exists": (project / "CONTEXT.md").exists(),
+        "tasks_exists": (project / "TASKS.md").exists(),
+    }
+
+
+def main() -> None:
+    print("=== Python Project Engine ===")
+
+    project_name = input("Project name: ").strip()
+
+    if not project_name:
+        print("Project name required.")
+        return
+
+    project = create_project(project_name)
+    session = start_session(project)
+
+    print()
+    print(f"Project: {project}")
+    print(f"Session: {session}")
+    print()
+    print("Health check:")
+
+    for key, value in health_check(project).items():
+        print(f"  {key}: {'OK' if value else 'MISSING'}")
+
+    print()
+    print("Git:")
+    print(git_status(project))
+
+
+if __name__ == "__main__":
+    main()
+```
+
+### Instalação
+
+Salve como:
+
+```bash
+mkdir -p ~/.local/bin
+nano ~/.local/bin/project-engine.py
+```
+
+Depois:
+
+```bash
+chmod +x ~/.local/bin/project-engine.py
+```
+
+Execute:
+
+```bash
+python3 ~/.local/bin/project-engine.py
+```
+
+Ele cria automaticamente:
+
+```text
+~/Projects/
+└── active/
+    └── meu_projeto/
+        ├── README.md
+        ├── CONTEXT.md
+        ├── TASKS.md
+        ├── DECISIONS.md
+        ├── CHANGELOG.md
+        ├── SESSION_SUMMARY.md
+        ├── engine.json
+        ├── chats/
+        ├── src/
+        ├── tests/
+        ├── docs/
+        ├── data/
+        ├── scripts/
+        └── artifacts/
+```
+
+A próxima evolução seria transformar esse engine em um **daemon `systemd`**, capaz de detectar novos projetos, criar checkpoints Git, executar testes Python e manter um índice das sessões automaticamente.
+
+

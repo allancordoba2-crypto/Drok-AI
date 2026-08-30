@@ -1,0 +1,53 @@
+{
+	"folders": [
+		{
+			"path": "../Grok"
+		}
+	],
+	"settings": {
+		"inlineChat.notebookAgent": true,
+		"editor.formatOnSave": true,
+		"files.autoSave": "afterDelay",
+		"editor.defaultFormatter": "ms-python.python",
+		"editor.fontFamily": "dROK",
+		"editor.wordWrap": "bounded",
+		"editor.mouseWheelZoom": true,
+		"editor.formatOnPaste": true,
+		"python.activeStateToolPath": "/",
+		"python.globalModuleInstallation": true,
+		"python.terminal.focusAfterLaunch": true,
+		"python.terminal.executeInFileDir": true,
+		"python.terminal.activateEnvironment": true,
+		"python.terminal.activateEnvInCurrentTerminal": true,
+		"python.REPL.sendToNativeREPL": true,
+		"python.testing.autoTestDiscoverOnSavePattern": ".PYTHON",
+		"python.testing.cwd": ".python",
+		"gitlens.changes.locations": [
+			"line",
+			"overview",
+			"gutter"
+		],
+		"gitlens.changes.toggleMode": "window",
+		"gitlens.autolinks": [
+			{
+				"prefix": "1",
+				"url": "https://www.google.com/ai",
+				"alphanumeric": true,
+				"ignoreCase": false,
+				"title": null
+			}
+		],
+		"gitlens.launchpad.indicator.label": "counts",
+		"gitlens.launchpad.indicator.useColors": true,
+		"gitlens.launchpad.staleThreshold": null,
+		"gitlens.ai.defaultAgent": "ide-chat",
+		"[jsonc]": {
+			"editor.defaultFormatter": "vscode.json-language-features"
+		}
+	},
+	"extensions": {
+		"recommendations": [
+			"habeebarul.react-component-tree"
+		]
+	}
+}
