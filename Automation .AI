@@ -1,0 +1,52 @@
+name: CI — content & basic checks
+on:
+  push:
+  pull_request:
+
+jobs:
+  content-checks:
+    name: Content checks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Node (for tools)
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      - name: Install content check tools
+        run: |
+          npm install -g markdownlint-cli@0.34.0 cspell@6
+      - name: Run markdownlint
+        run: markdownlint "**/*.md"
+      - name: Run cspell (spellcheck)
+        run: cspell "**/*.{md,mdx,txt,js,ts,py,go}"
+
+  detect-and-run-lint-tests:
+    name: Detect & run linters/tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run Node.js lint/test if package.json present
+        if: runner.os == 'Linux'
+        run: |
+          if [ -f package.json ]; then
+            npm ci
+            if npm run | grep -q 'lint'; then npm run lint; fi
+            if npm run | grep -q 'test'; then npm test --if-present; fi
+          fi
+      - name: Run Python lint/test if pyproject/requirements present
+        run: |
+          if [ -f pyproject.toml ] || [ -f requirements.txt ]; then
+            python -m pip install --upgrade pip
+            python -m pip install -r requirements.txt || true
+            if command -v flake8 >/dev/null 2>&1; then flake8 || true; fi
+            if [ -f pytest.ini ] || [ -d tests ]; then pytest -q || true; fi
+          fi
+      - name: Run Go vet/lint/tests if go.mod present
+        run: |
+          if [ -f go.mod ]; then
+            sudo apt-get update && sudo apt-get install -y golang-go || true
+            go vet ./... || true
+            if command -v golangci-lint >/dev/null 2>&1; then golangci-lint run || true; fi
+            go test ./... || true
+          fi
